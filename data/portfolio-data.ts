@@ -1,14 +1,7 @@
 export interface Project {
   id: string;
   title: string;
-  category:
-    | "Design System"
-    | "3D & WebGL"
-    | "Product Design"
-    | "Mobile App"
-    | "AI Interface"
-    | "Visual Identity"
-    | "Editorial Design";
+  category: "Design System" | "3D & WebGL" | "Product Design" | "Mobile App" | "AI Interface" | "Visual Identity" | "Editorial Design";
   description: string;
   longDescription: string;
   year: string;
@@ -58,7 +51,7 @@ export const PORTFOLIO_DATA = {
     subtitle: "Exploring the intersection of culture, emotion, and aesthetics.",
     location: "Ho Chi Minh City, Vietnam",
     status: "Available for Selected Q3-Q4 2026 Projects",
-    avatar: "/sasa-avatar.jpg",
+    avatar: "/sasa-portrait.jpg",
     bio: "I'm Sa Sa Nguyen, a multidisciplinary designer exploring the intersection of culture, emotion, and aesthetics. Born in Vietnam and currently based in Ho Chi Minh City, my work focuses on the balance between contrast and consistency. These elements shape how I build visual identities and tell meaningful stories through design.",
     stats: [
       { label: "Years Experience", value: "3+" },
@@ -83,91 +76,24 @@ export const PORTFOLIO_DATA = {
     philosophy:
       "Consistent, intentional, and thoughtfully structured visual systems connecting typography, spatial layouts, and digital experiences.",
     colorTokens: [
-      {
-        name: "Void Black",
-        role: "Surface 00 / Canvas",
-        hex: "#121212",
-        bgClass: "bg-[#121212]",
-      },
-      {
-        name: "Concrete Paper",
-        role: "Surface 01 / Card",
-        hex: "#DEDEDE",
-        bgClass: "bg-[#DEDEDE]",
-      },
-      {
-        name: "Architectural Grey",
-        role: "Secondary / Grid Line",
-        hex: "#888888",
-        bgClass: "bg-[#888888]",
-      },
-      {
-        name: "Ghost Shadow",
-        role: "Watermark / Parallax",
-        hex: "rgba(18, 18, 18, 0.085)",
-        bgClass: "bg-black/10",
-      },
-      {
-        name: "Warm Silver",
-        role: "Highlight / Surface",
-        hex: "#E8E6E2",
-        bgClass: "bg-[#E8E6E2]",
-      },
-      {
-        name: "Signal Dark",
-        role: "Active State",
-        hex: "#000000",
-        bgClass: "bg-[#000000]",
-      },
+      { name: "Void Black", role: "Surface 00 / Canvas", hex: "#121212", bgClass: "bg-[#121212]" },
+      { name: "Concrete Paper", role: "Surface 01 / Card", hex: "#DEDEDE", bgClass: "bg-[#DEDEDE]" },
+      { name: "Architectural Grey", role: "Secondary / Grid Line", hex: "#888888", bgClass: "bg-[#888888]" },
+      { name: "Ghost Shadow", role: "Watermark / Parallax", hex: "rgba(18, 18, 18, 0.085)", bgClass: "bg-black/10" },
+      { name: "Warm Silver", role: "Highlight / Surface", hex: "#E8E6E2", bgClass: "bg-[#E8E6E2]" },
+      { name: "Signal Dark", role: "Active State", hex: "#000000", bgClass: "bg-[#000000]" },
     ],
     typographyScale: [
-      {
-        level: "Display Statement",
-        size: "60px / 1.0",
-        weight: "BT Absinotte 200",
-        usage: "Philosophical statements, impact headlines",
-      },
-      {
-        level: "Hero Keyword",
-        size: "370px / 0.85",
-        weight: "Serif Condensed",
-        usage: "Hero cover title, watermark layers",
-      },
-      {
-        level: "Body Text",
-        size: "18px / 1.62",
-        weight: "BT Beau Sans 400",
-        usage: "Bio narratives, case study descriptions",
-      },
-      {
-        level: "Section Header",
-        size: "18px / 1.4",
-        weight: "BT Beau Sans 500",
-        usage: "Education, Experience, Contact titles",
-      },
-      {
-        level: "Mono Token",
-        size: "14px / 1.4",
-        weight: "Mono 400",
-        usage: "Registration crosshairs (+), grid metrics",
-      },
+      { level: "Display Statement", size: "60px / 1.0", weight: "BT Absinotte 200", usage: "Philosophical statements, impact headlines" },
+      { level: "Hero Keyword", size: "370px / 0.85", weight: "Serif Condensed", usage: "Hero cover title, watermark layers" },
+      { level: "Body Text", size: "18px / 1.62", weight: "BT Beau Sans 400", usage: "Bio narratives, case study descriptions" },
+      { level: "Section Header", size: "18px / 1.4", weight: "BT Beau Sans 500", usage: "Education, Experience, Contact titles" },
+      { level: "Mono Token", size: "14px / 1.4", weight: "Mono 400", usage: "Registration crosshairs (+), grid metrics" },
     ],
     motionPrinciples: [
-      {
-        title: "Inertial Damping",
-        curve: "cubic-bezier(0.16, 1, 0.3, 1)",
-        desc: "Fluid spring responsiveness mimicking physical paper resistance",
-      },
-      {
-        title: "Spatial Parallax",
-        curve: "transform: translate3d",
-        desc: "Multi-layered depth parallax between ghost watermarks and focal type",
-      },
-      {
-        title: "Continuous 1px Scrub",
-        curve: "Linear 1:1 interpolation",
-        desc: "Pixel-accurate scroll scrubber on the bottom metric ruler",
-      },
+      { title: "Inertial Damping", curve: "cubic-bezier(0.16, 1, 0.3, 1)", desc: "Fluid spring responsiveness mimicking physical paper resistance" },
+      { title: "Spatial Parallax", curve: "transform: translate3d", desc: "Multi-layered depth parallax between ghost watermarks and focal type" },
+      { title: "Continuous 1px Scrub", curve: "Linear 1:1 interpolation", desc: "Pixel-accurate scroll scrubber on the bottom metric ruler" },
     ],
   },
 
@@ -183,13 +109,7 @@ export const PORTFOLIO_DATA = {
         "An exploration of gentle typographic curves, warm organic grain textures, and evocative cultural storytelling.",
       longDescription:
         "The Softness of Femininity is a multi-disciplinary visual identity project exploring organic forms, delicate contrast, and tactile material textures. Combining editorial serif typography with curated artistic photo compositions to evoke emotion and calmness.",
-      tags: [
-        "Visual Identity",
-        "Editorial",
-        "Typography",
-        "Art Direction",
-        "Print",
-      ],
+      tags: ["Visual Identity", "Editorial", "Typography", "Art Direction", "Print"],
       metrics: [
         { label: "Instagram Reach", value: "14.2K" },
         { label: "Print Edition", value: "Collector" },
@@ -198,7 +118,7 @@ export const PORTFOLIO_DATA = {
       featured: true,
       color: "#121212",
       gradient: "from-stone-400/20 via-zinc-400/10 to-transparent",
-      image: "/artworks/work_1.jpg",
+      image: "/artworks/work_1.webp",
       instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
@@ -221,7 +141,7 @@ export const PORTFOLIO_DATA = {
       featured: true,
       color: "#121212",
       gradient: "from-zinc-400/20 via-neutral-400/10 to-transparent",
-      image: "/artworks/work_2.jpg",
+      image: "/artworks/work_2.webp",
       instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
@@ -244,7 +164,7 @@ export const PORTFOLIO_DATA = {
       featured: true,
       color: "#121212",
       gradient: "from-amber-400/15 via-stone-400/10 to-transparent",
-      image: "/artworks/work_3.jpg",
+      image: "/artworks/work_3.webp",
       instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
@@ -267,7 +187,7 @@ export const PORTFOLIO_DATA = {
       featured: false,
       color: "#121212",
       gradient: "from-orange-400/15 via-zinc-400/10 to-transparent",
-      image: "/artworks/work_4.jpg",
+      image: "/artworks/work_4.webp",
       instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
@@ -290,7 +210,7 @@ export const PORTFOLIO_DATA = {
       featured: false,
       color: "#121212",
       gradient: "from-yellow-400/15 via-stone-400/10 to-transparent",
-      image: "/artworks/work_5.jpg",
+      image: "/artworks/work_5.webp",
       instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
@@ -304,13 +224,7 @@ export const PORTFOLIO_DATA = {
         "Experimental grid systems, cultural semiotics, and brutalist typographic hierarchy explorations.",
       longDescription:
         "Academic and studio research exploring how cultural semiotics and structured grid systems shape visual communication. Designed a series of 12 silk-screen printed posters combining high-contrast serifs with swiss grid rigor.",
-      tags: [
-        "Typography",
-        "Grid Systems",
-        "Posters",
-        "Research",
-        "Silk-screen",
-      ],
+      tags: ["Typography", "Grid Systems", "Posters", "Research", "Silk-screen"],
       metrics: [
         { label: "Exhibited", value: "DAS 2024" },
         { label: "Poster Series", value: "12 Works" },
@@ -319,7 +233,7 @@ export const PORTFOLIO_DATA = {
       featured: false,
       color: "#121212",
       gradient: "from-zinc-400/20 via-stone-400/10 to-transparent",
-      image: "/artworks/work_6.jpg",
+      image: "/artworks/work_6.webp",
       instagram: "https://www.instagram.com/sasa_artdaily/",
     },
   ] as Project[],
@@ -328,48 +242,18 @@ export const PORTFOLIO_DATA = {
     {
       category: "Visual & Editorial Design",
       skills: [
-        {
-          name: "Brand Visual Systems",
-          level: 98,
-          icon: "Palette",
-          highlight: true,
-        },
-        {
-          name: "Editorial & Typographic Layouts",
-          level: 96,
-          icon: "Type",
-          highlight: true,
-        },
-        {
-          name: "Packaging & Print Production",
-          level: 94,
-          icon: "Layers",
-          highlight: true,
-        },
+        { name: "Brand Visual Systems", level: 98, icon: "Palette", highlight: true },
+        { name: "Editorial & Typographic Layouts", level: 96, icon: "Type", highlight: true },
+        { name: "Packaging & Print Production", level: 94, icon: "Layers", highlight: true },
         { name: "Cultural Semiotics & Research", level: 92, icon: "Compass" },
       ],
     },
     {
       category: "UI/UX & Digital Systems",
       skills: [
-        {
-          name: "Figma Component Architecture",
-          level: 98,
-          icon: "Figma",
-          highlight: true,
-        },
-        {
-          name: "Design Token Pipelines",
-          level: 95,
-          icon: "Code",
-          highlight: true,
-        },
-        {
-          name: "Interactive Web Experiences",
-          level: 92,
-          icon: "Zap",
-          highlight: true,
-        },
+        { name: "Figma Component Architecture", level: 98, icon: "Figma", highlight: true },
+        { name: "Design Token Pipelines", level: 95, icon: "Code", highlight: true },
+        { name: "Interactive Web Experiences", level: 92, icon: "Zap", highlight: true },
         { name: "Prototyping & Motion", level: 94, icon: "Sparkles" },
       ],
     },
@@ -400,12 +284,7 @@ export const PORTFOLIO_DATA = {
         "Overhauled brand visual identity and menu architecture across 6 restaurants.",
         "Designed award-winning seasonal packaging and brand campaigns.",
       ],
-      skills: [
-        "Brand Identity",
-        "Packaging Design",
-        "Print & Editorial",
-        "Hospitality",
-      ],
+      skills: ["Brand Identity", "Packaging Design", "Print & Editorial", "Hospitality"],
     },
     {
       period: "06/23 — 12/23",
@@ -441,8 +320,7 @@ export const PORTFOLIO_DATA = {
       title: "Volumetric Torus Knot Morph",
       category: "WebGL / GLSL",
       date: "2026",
-      description:
-        "Dynamic parametric geometry with real-time curvature deformation.",
+      description: "Dynamic parametric geometry with real-time curvature deformation.",
       shaderType: "torusKnot",
       accentColor: "#121212",
     },

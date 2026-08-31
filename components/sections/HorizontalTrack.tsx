@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useLenis } from "lenis/react";
 import CoverHeroSection from "./CoverHeroSection";
 import AboutDossierSection from "./AboutDossierSection";
@@ -24,6 +24,26 @@ export default function HorizontalTrack() {
   const lenis = useLenis();
 
   const sectionCount = BASE_SECTIONS.length; // 7
+
+  // Navigate directly to horizontal page
+  const handleNavigate = useCallback(
+    (index: number) => {
+      const vh = window.innerHeight || 1080;
+      const oneSetHeight = sectionCount * vh;
+      const currentSet = Math.floor(window.scrollY / oneSetHeight);
+      const targetScroll = currentSet * oneSetHeight + index * vh;
+
+      if (lenis) {
+        lenis.scrollTo(targetScroll, { duration: 0.9 });
+      } else {
+        window.scrollTo({
+          top: targetScroll,
+          behavior: "smooth",
+        });
+      }
+    },
+    [lenis, sectionCount]
+  );
 
   useEffect(() => {
     // Disable native scroll restoration so we start at the middle set
@@ -57,35 +77,48 @@ export default function HorizontalTrack() {
       }
     };
 
+    // 3. Accessibility: Full Keyboard Navigation Support
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if user is typing in an input / textarea
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      ) {
+        return;
+      }
+
+      const vh = window.innerHeight || 1080;
+      const currentProgress = (window.scrollY % (sectionCount * vh)) / vh;
+      const currentIdx = Math.round(currentProgress);
+
+      if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey)) {
+        e.preventDefault();
+        handleNavigate((currentIdx + 1) % sectionCount);
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp" || (e.key === " " && e.shiftKey)) {
+        e.preventDefault();
+        handleNavigate((currentIdx - 1 + sectionCount) % sectionCount);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        handleNavigate(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        handleNavigate(sectionCount - 1);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("keydown", handleKeyDown);
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [sectionCount]);
-
-  // Navigate directly to horizontal page
-  const handleNavigate = (index: number) => {
-    const vh = window.innerHeight || 1080;
-    const oneSetHeight = sectionCount * vh;
-    const currentSet = Math.floor(window.scrollY / oneSetHeight);
-    const targetScroll = currentSet * oneSetHeight + index * vh;
-
-    if (lenis) {
-      lenis.scrollTo(targetScroll, { duration: 0.9 });
-    } else {
-      window.scrollTo({
-        top: targetScroll,
-        behavior: "smooth",
-      });
-    }
-  };
+  }, [sectionCount, handleNavigate]);
 
   // ─────────────────────────────────────────────────────────────
   // MATHEMATICALLY LOCKED SYNCHRONIZATION
   // ─────────────────────────────────────────────────────────────
-  // 1 full cycle is 7 sections = 700vw
   const cycleLengthVW = sectionCount * 100; // 700vw
   const inCycleVW = ((currentVW % cycleLengthVW) + cycleLengthVW) % cycleLengthVW; // [0, 700)
 

@@ -36,13 +36,30 @@ export default function InteractiveArtifact({
     const width = container.clientWidth;
     const height = container.clientHeight;
 
+    // Check accessibility & device capability
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const isHighEnd =
+      typeof navigator !== "undefined" &&
+      (navigator.hardwareConcurrency || 4) >= 4;
+
+    const powerPreference: WebGLPowerPreference = isHighEnd
+      ? "high-performance"
+      : "default";
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
     camera.position.set(0, 0, 5);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({
+      antialias: isHighEnd,
+      alpha: true,
+      powerPreference,
+    });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isHighEnd ? 2 : 1.5));
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
@@ -50,7 +67,7 @@ export default function InteractiveArtifact({
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enableZoom = false;
-    controls.autoRotate = true;
+    controls.autoRotate = !prefersReducedMotion;
     controls.autoRotateSpeed = 2.5 * speed;
 
     // Lights
@@ -66,7 +83,10 @@ export default function InteractiveArtifact({
     scene.add(light2);
 
     let activeMesh: THREE.Object3D | null = null;
-    let disposables: { geometry?: THREE.BufferGeometry; material?: THREE.Material | THREE.Material[] } = {};
+    let disposables: {
+      geometry?: THREE.BufferGeometry;
+      material?: THREE.Material | THREE.Material[];
+    } = {};
 
     const buildObject = () => {
       if (activeMesh) {
@@ -95,7 +115,7 @@ export default function InteractiveArtifact({
         activeMesh = new THREE.Mesh(geo, mat);
         disposables = { geometry: geo, material: mat };
       } else if (activeType === "particles") {
-        const count = 1800;
+        const count = prefersReducedMotion ? 600 : 1800;
         const geo = new THREE.BufferGeometry();
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
@@ -185,17 +205,31 @@ export default function InteractiveArtifact({
 
     window.addEventListener("resize", handleResize);
 
+    // Performance: Pause animation when off-screen
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(container);
+
     let animationFrameId: number;
     const clock = new THREE.Clock();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
-      const delta = clock.getDelta();
-      controls.autoRotateSpeed = 2.0 * speed;
-      controls.update();
+      if (!isVisible) return; // Skip rendering when out of viewport
 
-      if (activeMesh && activeType === "torusKnot") {
-        activeMesh.rotation.y += delta * 0.3 * speed;
+      const delta = clock.getDelta();
+      if (!prefersReducedMotion) {
+        controls.autoRotateSpeed = 2.0 * speed;
+        controls.update();
+
+        if (activeMesh && activeType === "torusKnot") {
+          activeMesh.rotation.y += delta * 0.3 * speed;
+        }
       }
 
       renderer.render(scene, camera);
@@ -205,10 +239,14 @@ export default function InteractiveArtifact({
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
       controls.dispose();
       if (activeMesh) scene.remove(activeMesh);
       if (disposables.geometry) disposables.geometry.dispose();
+      ambientLight.dispose();
+      light1.dispose();
+      light2.dispose();
       renderer.dispose();
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
@@ -272,11 +310,11 @@ export default function InteractiveArtifact({
           {/* Color Palettes */}
           <div className="flex items-center gap-1.5">
             {[
+              { hex: "#121212", label: "Black" },
               { hex: "#6366F1", label: "Indigo" },
               { hex: "#06B6D4", label: "Cyan" },
               { hex: "#A855F7", label: "Violet" },
               { hex: "#10B981", label: "Emerald" },
-              { hex: "#F59E0B", label: "Amber" },
             ].map((c) => (
               <button
                 key={c.hex}

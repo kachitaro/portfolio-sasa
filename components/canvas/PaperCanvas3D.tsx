@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import * as THREE from "three";
 import DustParticles3D from "./DustParticles3D";
 
@@ -29,7 +29,7 @@ function InteractiveLighting() {
       <pointLight
         ref={lightRef}
         position={[0, 0, 4]}
-        intensity={3.5}
+        intensity={3.0}
         distance={18}
         color="#ffffff"
       />
@@ -42,16 +42,27 @@ function InteractiveLighting() {
  * rendered via React Three Fiber.
  */
 export default function PaperCanvas3D() {
+  const isHighPerformance = useMemo(() => {
+    return (
+      typeof navigator !== "undefined" &&
+      (navigator.hardwareConcurrency || 4) >= 4
+    );
+  }, []);
+
   return (
     <div className="fixed inset-0 pointer-events-none -z-10 w-full h-full">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
-        gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
-        dpr={[1, 1.5]}
+        gl={{
+          alpha: true,
+          antialias: false,
+          powerPreference: isHighPerformance ? "high-performance" : "low-power",
+        }}
+        dpr={[1, isHighPerformance ? 1.5 : 1]}
         style={{ pointerEvents: "none" }}
       >
         <InteractiveLighting />
-        <DustParticles3D count={280} />
+        <DustParticles3D count={240} />
       </Canvas>
     </div>
   );

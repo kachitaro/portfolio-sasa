@@ -1,8 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import GridGuides from "@/components/ui/GridGuides";
 import { Box } from "lucide-react";
-import InteractiveArtifact from "@/components/3d/InteractiveArtifact";
+
+// Dynamically import Interactive 3D WebGL Artifact with ssr: false
+const InteractiveArtifact = dynamic(
+  () => import("@/components/3d/InteractiveArtifact"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-80 sm:h-96 rounded-2xl bg-black/[0.04] border border-black/10 flex items-center justify-center text-xs font-mono text-black/50">
+        Loading 3D Viewport...
+      </div>
+    ),
+  }
+);
 
 export default function WebGLPage() {
   return (
