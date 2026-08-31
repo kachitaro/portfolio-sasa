@@ -1,7 +1,7 @@
 "use client";
 
 import GridGuides from "@/components/ui/GridGuides";
-import { ArrowUpRight, Smartphone, Touchpad } from "lucide-react";
+import { Smartphone, Touchpad } from "lucide-react";
 
 export default function MobileAppPage() {
   return (
@@ -9,14 +9,7 @@ export default function MobileAppPage() {
       id="mobile-app"
       className="relative w-screen h-screen min-h-[640px] shrink-0 paper-texture px-8 sm:px-16 py-10 sm:py-12 flex flex-col justify-between select-none overflow-hidden"
     >
-      <GridGuides showCenterH={false} />
-
-      {/* Top Crosshairs Row */}
-      <div className="absolute top-4 left-[2.2%] text-black/50 text-xs font-mono">+</div>
-      <div className="absolute top-4 left-[20.26%] text-black/50 text-xs font-mono">+</div>
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 text-black/50 text-xs font-mono">+</div>
-      <div className="absolute top-4 left-[79.74%] text-black/50 text-xs font-mono">+</div>
-      <div className="absolute top-4 right-[2.2%] text-black/50 text-xs font-mono">+</div>
+      <GridGuides showTopH={true} showCenterH={false} showBottomH={false} />
 
       <div className="relative z-10 w-full max-w-[1720px] mx-auto flex-1 flex flex-col justify-between pb-14">
         {/* Header Title */}

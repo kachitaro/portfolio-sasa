@@ -1,7 +1,14 @@
 export interface Project {
   id: string;
   title: string;
-  category: "Design System" | "3D & WebGL" | "Product Design" | "Mobile App" | "AI Interface";
+  category:
+    | "Design System"
+    | "3D & WebGL"
+    | "Product Design"
+    | "Mobile App"
+    | "AI Interface"
+    | "Visual Identity"
+    | "Editorial Design";
   description: string;
   longDescription: string;
   year: string;
@@ -12,8 +19,10 @@ export interface Project {
   featured: boolean;
   color: string;
   gradient: string;
+  image?: string;
   link?: string;
   github?: string;
+  instagram?: string;
 }
 
 export interface ExperienceItem {
@@ -43,284 +52,408 @@ export interface LabExperiment {
 
 export const PORTFOLIO_DATA = {
   profile: {
-    name: "Sasa",
-    fullName: "Sasa Nguyen",
-    title: "Senior Product Designer & Creative Technologist",
-    subtitle: "DS-2026 — Crafting Next-Generation Interfaces, 3D WebGL Experiences & Scalable Design Systems",
-    location: "Ho Chi Minh City, VN / Remote Worldwide",
+    name: "Sa Sa",
+    fullName: "Sa Sa Nguyen",
+    title: "Multi-disciplinary Designer & UI/UX Specialist",
+    subtitle: "Exploring the intersection of culture, emotion, and aesthetics.",
+    location: "Ho Chi Minh City, Vietnam",
     status: "Available for Selected Q3-Q4 2026 Projects",
-    avatar: "/avatar.png",
-    bio: "Passionate designer and creative developer bridging high-craft UI/UX with cutting-edge 3D WebGL & Motion engineering. Over 8 years designing intuitive digital products and enterprise design systems used by millions.",
+    avatar: "/sasa-avatar.jpg",
+    bio: "I'm Sa Sa Nguyen, a multidisciplinary designer exploring the intersection of culture, emotion, and aesthetics. Born in Vietnam and currently based in Ho Chi Minh City, my work focuses on the balance between contrast and consistency. These elements shape how I build visual identities and tell meaningful stories through design.",
     stats: [
-      { label: "Years Experience", value: "8+" },
-      { label: "Products Shipped", value: "45+" },
-      { label: "Design Awards", value: "14" },
-      { label: "User Reach", value: "4.2M+" },
+      { label: "Years Experience", value: "3+" },
+      { label: "Brand Identities", value: "24+" },
+      { label: "Design Systems", value: "8" },
+      { label: "Community Reach", value: "10K+" },
     ],
     socials: {
-      figma: "https://figma.com/@sasa",
+      instagram: "https://www.instagram.com/sasa_artdaily/",
+      figma: "https://figma.com/@sasa_design",
       github: "https://github.com/sasa",
       dribbble: "https://dribbble.com/sasa",
       linkedin: "https://linkedin.com/in/sasa",
-      twitter: "https://twitter.com/sasa_design",
-      email: "contact@sasa.design",
-    }
+      twitter: "https://twitter.com/sasa",
+      email: "linhsa112@gmail.com",
+    },
   },
 
   designSystem: {
     name: "DS-2026",
     version: "v4.2.0",
-    philosophy: "Precision, Spatial Depth, and Fluid Physics. Built for seamless translation from Figma component architecture to React & WebGL canvas.",
+    philosophy:
+      "Consistent, intentional, and thoughtfully structured visual systems connecting typography, spatial layouts, and digital experiences.",
     colorTokens: [
-      { name: "Void Black", role: "Surface 00 / Canvas", hex: "#07080D", bgClass: "bg-[#07080D]" },
-      { name: "Obsidian Deep", role: "Surface 01 / Card", hex: "#0E111B", bgClass: "bg-[#0E111B]" },
-      { name: "Electric Indigo", role: "Primary Accent / Glow", hex: "#6366F1", bgClass: "bg-[#6366F1]" },
-      { name: "Cyan Plasma", role: "Secondary / Tech Glow", hex: "#06B6D4", bgClass: "bg-[#06B6D4]" },
-      { name: "Neon Violet", role: "Highlight / Motion", hex: "#A855F7", bgClass: "bg-[#A855F7]" },
-      { name: "Emerald Signal", role: "Success / Live State", hex: "#10B981", bgClass: "bg-[#10B981]" },
+      {
+        name: "Void Black",
+        role: "Surface 00 / Canvas",
+        hex: "#121212",
+        bgClass: "bg-[#121212]",
+      },
+      {
+        name: "Concrete Paper",
+        role: "Surface 01 / Card",
+        hex: "#DEDEDE",
+        bgClass: "bg-[#DEDEDE]",
+      },
+      {
+        name: "Architectural Grey",
+        role: "Secondary / Grid Line",
+        hex: "#888888",
+        bgClass: "bg-[#888888]",
+      },
+      {
+        name: "Ghost Shadow",
+        role: "Watermark / Parallax",
+        hex: "rgba(18, 18, 18, 0.085)",
+        bgClass: "bg-black/10",
+      },
+      {
+        name: "Warm Silver",
+        role: "Highlight / Surface",
+        hex: "#E8E6E2",
+        bgClass: "bg-[#E8E6E2]",
+      },
+      {
+        name: "Signal Dark",
+        role: "Active State",
+        hex: "#000000",
+        bgClass: "bg-[#000000]",
+      },
     ],
     typographyScale: [
-      { level: "Display XXL", size: "72px / 1.05", weight: "Bold 700", usage: "Hero titles, impact statements" },
-      { level: "Heading XL", size: "48px / 1.15", weight: "SemiBold 600", usage: "Section headers, project names" },
-      { level: "Heading L", size: "32px / 1.25", weight: "SemiBold 600", usage: "Card titles, subsection headers" },
-      { level: "Body Standard", size: "16px / 1.6", weight: "Regular 400", usage: "Narratives, descriptions, content" },
-      { level: "Mono Token", size: "13px / 1.4", weight: "Mono 500", usage: "Labels, metadata, code specs" },
+      {
+        level: "Display Statement",
+        size: "60px / 1.0",
+        weight: "BT Absinotte 200",
+        usage: "Philosophical statements, impact headlines",
+      },
+      {
+        level: "Hero Keyword",
+        size: "370px / 0.85",
+        weight: "Serif Condensed",
+        usage: "Hero cover title, watermark layers",
+      },
+      {
+        level: "Body Text",
+        size: "18px / 1.62",
+        weight: "BT Beau Sans 400",
+        usage: "Bio narratives, case study descriptions",
+      },
+      {
+        level: "Section Header",
+        size: "18px / 1.4",
+        weight: "BT Beau Sans 500",
+        usage: "Education, Experience, Contact titles",
+      },
+      {
+        level: "Mono Token",
+        size: "14px / 1.4",
+        weight: "Mono 400",
+        usage: "Registration crosshairs (+), grid metrics",
+      },
     ],
     motionPrinciples: [
-      { title: "Inertial Damping", curve: "cubic-bezier(0.16, 1, 0.3, 1)", desc: "Physics-inspired spring responsiveness with zero abrupt stops" },
-      { title: "Spatial Depth Z", curve: "perspective: 1200px", desc: "True 3D layer parallax based on pointer cursor position" },
-      { title: "Luminescent Focus", curve: "0.4s ease-out glow", desc: "Interactive reactive illumination following user interaction" }
-    ]
+      {
+        title: "Inertial Damping",
+        curve: "cubic-bezier(0.16, 1, 0.3, 1)",
+        desc: "Fluid spring responsiveness mimicking physical paper resistance",
+      },
+      {
+        title: "Spatial Parallax",
+        curve: "transform: translate3d",
+        desc: "Multi-layered depth parallax between ghost watermarks and focal type",
+      },
+      {
+        title: "Continuous 1px Scrub",
+        curve: "Linear 1:1 interpolation",
+        desc: "Pixel-accurate scroll scrubber on the bottom metric ruler",
+      },
+    ],
   },
 
   projects: [
     {
-      id: "aether-spatial-os",
-      title: "Aether OS — Spatial Computing UI 2026",
-      category: "3D & WebGL",
-      year: "2026",
-      role: "Lead Product Designer & WebGL Architect",
-      client: "Aether Labs / Vision Platform",
-      description: "A spatial operating system interface featuring gesture physics, dynamic frosted glass materials, and spatial depth layer management.",
-      longDescription: "Aether OS reimagines multi-window spatial computing for web and AR platforms. Designed in Figma with comprehensive DS-2026 design token sync, and implemented with Three.js shaders and Framer Motion spring physics. Achieved 60fps rendering across desktop and mobile devices.",
-      tags: ["Spatial UI", "Three.js", "Figma DS", "GLSL Shaders", "Gestures"],
+      id: "softness-of-femininity",
+      title: "The Softness of Femininity — Visual Identity Series",
+      category: "Visual Identity",
+      year: "2025 — 2026",
+      role: "Lead Visual Designer & Art Director",
+      client: "Sa Sa Nguyen Studio Archive",
+      description:
+        "An exploration of gentle typographic curves, warm organic grain textures, and evocative cultural storytelling.",
+      longDescription:
+        "The Softness of Femininity is a multi-disciplinary visual identity project exploring organic forms, delicate contrast, and tactile material textures. Combining editorial serif typography with curated artistic photo compositions to evoke emotion and calmness.",
+      tags: [
+        "Visual Identity",
+        "Editorial",
+        "Typography",
+        "Art Direction",
+        "Print",
+      ],
       metrics: [
-        { label: "FPS Performance", value: "60 FPS" },
-        { label: "Interaction Latency", value: "<12ms" },
-        { label: "Active Beta Users", value: "180K+" }
+        { label: "Instagram Reach", value: "14.2K" },
+        { label: "Print Edition", value: "Collector" },
+        { label: "Art Direction", value: "Sa Sa" },
       ],
       featured: true,
-      color: "#6366F1",
-      gradient: "from-indigo-500/20 via-purple-500/10 to-transparent",
-      link: "https://aether-os.example.com",
-      github: "https://github.com/sasa/aether-os"
+      color: "#121212",
+      gradient: "from-stone-400/20 via-zinc-400/10 to-transparent",
+      image: "/artworks/work_1.jpg",
+      instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
-      id: "nexus-enterprise-ds",
-      title: "Nexus Multi-Brand Design System",
-      category: "Design System",
-      year: "2025 - 2026",
-      role: "Principal Design Systems Architect",
-      client: "Nexus Global Cloud",
-      description: "An enterprise design system powering 6 unified platforms, 240+ WCAG AAA compliant components, and automated code token pipelines.",
-      longDescription: "Unified multiple fragmented products into a single coherent design language. Built token synchronization between Figma Variables and Tailwind/CSS tokens via GitHub Actions. Reduced front-end delivery cycle time by 42% across 30+ product squads.",
-      tags: ["Design System", "Figma Tokens", "Tailwind CSS", "Accessibility", "Governance"],
-      metrics: [
-        { label: "Component Adoption", value: "98.4%" },
-        { label: "Delivery Speed", value: "+42%" },
-        { label: "Cross-Brand Themes", value: "6 Brands" }
-      ],
-      featured: true,
-      color: "#06B6D4",
-      gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
-      link: "https://nexus-ds.example.com",
-      github: "https://github.com/sasa/nexus-ds"
-    },
-    {
-      id: "vortex-generative-audio",
-      title: "Vortex 3D — Generative Audio Visualizer",
-      category: "3D & WebGL",
-      year: "2025",
-      role: "Creative Technologist",
-      client: "SoundWave Interactive",
-      description: "Interactive real-time audio reactive WebGL experience generating morphing volumetric geometries synced to frequencies.",
-      longDescription: "Exploration in combining Web Audio API FFT analysis with custom Three.js vertex shaders. Users can modulate sound parameters in real-time, customize particle turbulence, and export 4K geometric audio visual loops.",
-      tags: ["Three.js", "Web Audio API", "Vertex Shaders", "Motion", "Canvas 3D"],
-      metrics: [
-        { label: "FWA of the Day", value: "Winner" },
-        { label: "Awwwards Site of Day", value: "Winner" },
-        { label: "Audio Latency", value: "8ms" }
-      ],
-      featured: true,
-      color: "#A855F7",
-      gradient: "from-purple-500/20 via-pink-500/10 to-transparent",
-      link: "https://vortex-audio.example.com"
-    },
-    {
-      id: "chronos-ai-analytics",
-      title: "Chronos AI — Predictive Operations Platform",
+      id: "bear-plus-ui-ux",
+      title: "Bear Plus Agency — Digital Product Experiences",
       category: "Product Design",
-      year: "2025",
-      role: "Lead UI/UX Designer",
-      client: "Chronos Intelligence",
-      description: "AI-native dashboard for enterprise time-series forecasting, automated anomaly diagnosis, and natural language analytics querying.",
-      longDescription: "Crafted complex information architecture into an effortless cognitive experience. Implemented modular bento-grid layouts, adaptive dark UI, and contextual micro-charts with fluid animated transitions.",
-      tags: ["AI UI/UX", "Dashboard", "Bento Grid", "Data Viz", "Next.js"],
+      year: "09/25 — 03/26",
+      role: "UI/UX Designer",
+      client: "Bear Plus Agency",
+      description:
+        "Scalable web and mobile design systems for digital brands and enterprise clients.",
+      longDescription:
+        "Crafting intuitive user interfaces, cohesive design systems, and responsive web experiences. Standardizing component tokens, spacing logic, and interactive prototypes for high-conversion web platforms.",
+      tags: ["UI/UX", "Design Systems", "Figma", "Webflow", "Prototyping"],
       metrics: [
-        { label: "Query Resolution", value: "3.8x faster" },
-        { label: "Daily Active Users", value: "85K" },
-        { label: "NPS Score", value: "+74" }
+        { label: "Role", value: "UI Designer" },
+        { label: "Projects Shipped", value: "12+" },
+        { label: "Adoption Rate", value: "98%" },
       ],
-      featured: false,
-      color: "#10B981",
-      gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
-      link: "https://chronos-ai.example.com"
+      featured: true,
+      color: "#121212",
+      gradient: "from-zinc-400/20 via-neutral-400/10 to-transparent",
+      image: "/artworks/work_2.jpg",
+      instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
-      id: "prism-fintech-superapp",
-      title: "Prism — Next-Gen Multi-Asset Wealth App",
-      category: "Mobile App",
-      year: "2024 - 2025",
-      role: "Senior Product Designer",
-      client: "Prism Financial Corp",
-      description: "High-security mobile financial app combining traditional equities, crypto assets, and automated yield algorithms in an ultra-clean UI.",
-      longDescription: "End-to-end mobile design system and native UX flows. Engineered delightful tactile haptics, seamless biometric authentication transitions, and interactive asset growth simulator graphs.",
-      tags: ["FinTech", "iOS/Android", "Design System", "Micro-interactions", "Motion"],
+      id: "tribe-hospitality-branding",
+      title: "Tribe Hospitality — Brand Identity & Packaging",
+      category: "Editorial Design",
+      year: "02/24 — 04/26",
+      role: "Graphic Designer",
+      client: "Tribe Hospitality",
+      description:
+        "Comprehensive hospitality branding, restaurant menus, packaging systems, and spatial brand collateral.",
+      longDescription:
+        "End-to-end graphic design for premier hospitality dining venues. Developed cohesive menu typography, food & beverage packaging guidelines, and promotional campaign artwork across physical and digital touchpoints.",
+      tags: ["Hospitality", "Branding", "Packaging", "Print", "Editorial"],
       metrics: [
-        { label: "App Store Rating", value: "4.9 ★" },
-        { label: "Assets Tracked", value: "$1.4B+" },
-        { label: "Conversion Rate", value: "+31%" }
+        { label: "Role", value: "Graphic Designer" },
+        { label: "Tenure", value: "2+ Years" },
+        { label: "Venues", value: "6 Concepts" },
       ],
-      featured: false,
-      color: "#F59E0B",
-      gradient: "from-amber-500/20 via-orange-500/10 to-transparent",
-      link: "https://prism-app.example.com"
+      featured: true,
+      color: "#121212",
+      gradient: "from-amber-400/15 via-stone-400/10 to-transparent",
+      image: "/artworks/work_3.jpg",
+      instagram: "https://www.instagram.com/sasa_artdaily/",
     },
     {
-      id: "luminary-brand-experience",
-      title: "Luminary — Interactive 3D Brand Journey",
-      category: "3D & WebGL",
+      id: "giong-cafe-identity",
+      title: "Gióng Cafe — Artisan Coffee Identity & Collateral",
+      category: "Visual Identity",
+      year: "06/23 — 12/23",
+      role: "Graphic Designer",
+      client: "Gióng Cafe",
+      description:
+        "Artisan Vietnamese coffee identity, takeaway packaging, stamp cards, and cultural storytelling.",
+      longDescription:
+        "Created welcoming, culturally rooted visual identity for an artisan cafe in Ho Chi Minh City. Designed custom illustrated cup sleeves, promotional poster series, and social media visual guidelines.",
+      tags: ["Cafe Identity", "Packaging", "Illustration", "Social Media"],
+      metrics: [
+        { label: "Daily Visitors", value: "800+" },
+        { label: "Packaging Sets", value: "10K+" },
+        { label: "Brand Recall", value: "+45%" },
+      ],
+      featured: false,
+      color: "#121212",
+      gradient: "from-orange-400/15 via-zinc-400/10 to-transparent",
+      image: "/artworks/work_4.jpg",
+      instagram: "https://www.instagram.com/sasa_artdaily/",
+    },
+    {
+      id: "culinary-editorial-series",
+      title: "Cooking During the Holiday — Illustrated Culinary Book",
+      category: "Editorial Design",
       year: "2024",
-      role: "Creative Developer & 3D Artist",
-      client: "Luminary Studio",
-      description: "Immersive storytelling website with smooth scroll-driven 3D camera transitions, particle reveals, and custom typography animation.",
-      longDescription: "Built with smooth Lenis-style inertial scrolling, Three.js camera rig orchestration, and Framer Motion staggered text reveals. Reached #1 on Behance Interaction category.",
-      tags: ["Three.js", "Camera Rig", "Scroll Animation", "Branding", "Creative Web"],
+      role: "Illustrator & Layout Designer",
+      client: "Personal Publication",
+      description:
+        "A warm, illustrated editorial recipe zine capturing holiday warmth, cooking rituals, and shared meals.",
+      longDescription:
+        "Hand-crafted visual narrative celebrating culinary warmth and home cooking. Features custom illustrations, tactile typography layouts, and warm earth-tone palette inspired by Vietnamese home kitchens.",
+      tags: ["Editorial", "Illustration", "Zine", "Book Design", "Print"],
       metrics: [
-        { label: "Avg Time on Site", value: "4m 12s" },
-        { label: "Bounce Rate", value: "18.2%" },
-        { label: "CSSDA Award", value: "Best UI/UX" }
+        { label: "Pages", value: "48 Pages" },
+        { label: "Illustrations", value: "32 Custom" },
+        { label: "Format", value: "Risograph" },
       ],
       featured: false,
-      color: "#EC4899",
-      gradient: "from-pink-500/20 via-rose-500/10 to-transparent",
-      link: "https://luminary-brand.example.com"
-    }
+      color: "#121212",
+      gradient: "from-yellow-400/15 via-stone-400/10 to-transparent",
+      image: "/artworks/work_5.jpg",
+      instagram: "https://www.instagram.com/sasa_artdaily/",
+    },
+    {
+      id: "design-anthropology-posters",
+      title: "Design Anthropology — Experimental Typography Posters",
+      category: "Design System",
+      year: "2024",
+      role: "Multi-disciplinary Designer",
+      client: "Design Anthropology School",
+      description:
+        "Experimental grid systems, cultural semiotics, and brutalist typographic hierarchy explorations.",
+      longDescription:
+        "Academic and studio research exploring how cultural semiotics and structured grid systems shape visual communication. Designed a series of 12 silk-screen printed posters combining high-contrast serifs with swiss grid rigor.",
+      tags: [
+        "Typography",
+        "Grid Systems",
+        "Posters",
+        "Research",
+        "Silk-screen",
+      ],
+      metrics: [
+        { label: "Exhibited", value: "DAS 2024" },
+        { label: "Poster Series", value: "12 Works" },
+        { label: "Medium", value: "Silk-screen" },
+      ],
+      featured: false,
+      color: "#121212",
+      gradient: "from-zinc-400/20 via-stone-400/10 to-transparent",
+      image: "/artworks/work_6.jpg",
+      instagram: "https://www.instagram.com/sasa_artdaily/",
+    },
   ] as Project[],
 
   skills: [
     {
-      category: "Product & UI/UX Design",
+      category: "Visual & Editorial Design",
       skills: [
-        { name: "Figma & Design Systems", level: 98, icon: "Figma", highlight: true },
-        { name: "Spatial & 3D Interface Design", level: 92, icon: "Layers", highlight: true },
-        { name: "Prototyping & Micro-interactions", level: 95, icon: "Sparkles", highlight: true },
-        { name: "User Research & Usability Testing", level: 88, icon: "Users" },
-        { name: "Information Architecture", level: 90, icon: "Grid" },
-        { name: "Accessibility (WCAG AAA)", level: 94, icon: "CheckCircle" },
-      ]
+        {
+          name: "Brand Visual Systems",
+          level: 98,
+          icon: "Palette",
+          highlight: true,
+        },
+        {
+          name: "Editorial & Typographic Layouts",
+          level: 96,
+          icon: "Type",
+          highlight: true,
+        },
+        {
+          name: "Packaging & Print Production",
+          level: 94,
+          icon: "Layers",
+          highlight: true,
+        },
+        { name: "Cultural Semiotics & Research", level: 92, icon: "Compass" },
+      ],
     },
     {
-      category: "Creative Technology & Engineering",
+      category: "UI/UX & Digital Systems",
       skills: [
-        { name: "Three.js & WebGL / GLSL", level: 90, icon: "Box", highlight: true },
-        { name: "Motion & Framer Motion", level: 96, icon: "Activity", highlight: true },
-        { name: "React 19 & Next.js 16", level: 94, icon: "Code", highlight: true },
-        { name: "TypeScript & Modern JS", level: 92, icon: "Terminal" },
-        { name: "Tailwind CSS v4 & Shaders", level: 95, icon: "Palette" },
-        { name: "Performance Optimization (60FPS)", level: 91, icon: "Zap" },
-      ]
-    }
+        {
+          name: "Figma Component Architecture",
+          level: 98,
+          icon: "Figma",
+          highlight: true,
+        },
+        {
+          name: "Design Token Pipelines",
+          level: 95,
+          icon: "Code",
+          highlight: true,
+        },
+        {
+          name: "Interactive Web Experiences",
+          level: 92,
+          icon: "Zap",
+          highlight: true,
+        },
+        { name: "Prototyping & Motion", level: 94, icon: "Sparkles" },
+      ],
+    },
   ] as SkillCategory[],
 
   experiences: [
     {
-      period: "2024 — Present",
-      role: "Lead Creative Technologist & DS Architect",
-      company: "Aetherial Labs",
-      location: "San Francisco / Remote",
-      description: "Leading the core product design and 3D WebGL engineering squad. Standardizing DS-2026 across multi-platform spatial and cloud experiences.",
-      achievements: [
-        "Architected tokenized design system used by 50+ developers and 15 designers across 4 time zones.",
-        "Built core 3D interactive engine yielding 60fps on mobile web with zero bundle bloat.",
-        "Mentored junior and mid-level designers in code-driven prototyping and WebGL."
-      ],
-      skills: ["Design Systems", "Three.js", "Next.js", "Figma", "WebGL", "Motion"]
-    },
-    {
-      period: "2022 — 2024",
-      role: "Senior Product Designer",
-      company: "Nexus Global Cloud",
-      location: "Singapore / Remote",
-      description: "Spearheaded enterprise UX transformation for mission-critical cloud infrastructure tools and developer portals.",
-      achievements: [
-        "Redesigned the flagship analytics console, decreasing task completion time by 35%.",
-        "Created an end-to-end Figma token sync pipeline directly targeting production CSS.",
-        "Led WCAG AAA compliance audit and remediation across 240+ components."
-      ],
-      skills: ["Enterprise UX", "Figma Tokens", "Design Tokens", "React", "Data Viz"]
-    },
-    {
-      period: "2020 — 2022",
-      role: "UI/UX & Motion Designer",
-      company: "Studio Pulse Interactive",
+      period: "09/25 — 03/26",
+      role: "UI Designer",
+      company: "Bear Plus Agency",
       location: "Ho Chi Minh City",
-      description: "Crafted award-winning interactive websites, fintech apps, and brand visual identities for international clients.",
+      description:
+        "Designing scalable digital user interfaces, interactive component libraries, and responsive web systems for agency clients.",
       achievements: [
-        "Delivered 18+ client projects with 100% on-time milestone delivery.",
-        "Won 4 Awwwards Site of the Day and 3 FWA of the Day recognitions.",
-        "Established internal motion design standards and interactive component libraries."
+        "Delivered 12+ digital client products with high user engagement.",
+        "Built standardized Figma component variables syncing to web stylesheets.",
       ],
-      skills: ["Motion Design", "UI/UX", "After Effects", "Framer", "Prototyping"]
-    }
+      skills: ["UI/UX Design", "Figma", "Design Systems", "Webflow"],
+    },
+    {
+      period: "02/24 — 04/26",
+      role: "Graphic designer",
+      company: "Tribe Hospitality",
+      location: "Ho Chi Minh City",
+      description:
+        "Leading brand identity, dining menu design, food packaging, and marketing collateral across 6 hospitality concepts.",
+      achievements: [
+        "Overhauled brand visual identity and menu architecture across 6 restaurants.",
+        "Designed award-winning seasonal packaging and brand campaigns.",
+      ],
+      skills: [
+        "Brand Identity",
+        "Packaging Design",
+        "Print & Editorial",
+        "Hospitality",
+      ],
+    },
+    {
+      period: "06/23 — 12/23",
+      role: "Graphic designer",
+      company: "Gióng Cafe",
+      location: "Ho Chi Minh City",
+      description:
+        "Created brand visual identity, custom cup packaging, stamp loyalty cards, and social media visual language.",
+      achievements: [
+        "Established recognizable local cafe identity recognized in coffee lifestyle magazines.",
+        "Designed complete packaging suite from bean bags to takeaway cups.",
+      ],
+      skills: ["Brand Identity", "Illustration", "Packaging", "Social Media"],
+    },
   ] as ExperienceItem[],
+
+  education: [
+    {
+      year: "2024",
+      degree: "Multi-disciplinary Designer",
+      school: "Design Anthropology School",
+    },
+    {
+      year: "2020",
+      degree: "Saigontourist Hospitality College",
+      school: "Hotel restaurant management",
+    },
+  ],
 
   labExperiments: [
     {
       id: "torus-knot-morph",
       title: "Volumetric Torus Knot Morph",
       category: "WebGL / GLSL",
-      date: "Aug 2026",
-      description: "Dynamic parametric geometry with real-time curvature deformation and iridescent chromatic aberration.",
+      date: "2026",
+      description:
+        "Dynamic parametric geometry with real-time curvature deformation.",
       shaderType: "torusKnot",
-      accentColor: "#6366F1"
+      accentColor: "#121212",
     },
     {
       id: "cyber-particle-sphere",
       title: "Orbital Particle Core",
       category: "Three.js Physics",
-      date: "Jul 2026",
-      description: "3,000 particle point-cloud responding to cursor velocity with gravity attraction and repulsion field.",
+      date: "2026",
+      description: "3,000 particle point-cloud responding to cursor velocity.",
       shaderType: "particles",
-      accentColor: "#06B6D4"
+      accentColor: "#333333",
     },
-    {
-      id: "hologram-grid",
-      title: "Holographic Matrix Grid",
-      category: "Shader Art",
-      date: "Jun 2026",
-      description: "Procedural wireframe terrain with real-time scanline pulse waves and depth attenuation.",
-      shaderType: "hologram",
-      accentColor: "#A855F7"
-    },
-    {
-      id: "cyber-sphere-field",
-      title: "Hyper-dimensional Orb",
-      category: "Raymarching",
-      date: "May 2026",
-      description: "Smooth continuous noise displacement mapped onto an icosahedron with specular fresnel sheen.",
-      shaderType: "cyberSphere",
-      accentColor: "#10B981"
-    }
-  ] as LabExperiment[]
+  ] as LabExperiment[],
 };

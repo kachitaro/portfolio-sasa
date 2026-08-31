@@ -11,19 +11,30 @@ import MobileAppPage from "./MobileAppPage";
 import AIInterfacePage from "./AIInterfacePage";
 import RulerNavbar, { BASE_SECTIONS } from "@/components/ui/RulerNavbar";
 
-// Repeated panels for infinite circular horizontal scroll
-// Portfolio ⟶ About ⟶ Design System ⟶ 3D & WebGL ⟶ Product Design ⟶ Mobile App ⟶ AI Interface ⟶ Portfolio ⟶ ...
-const SET_COUNT = 3;
+// 5 repeated sets for seamless bidirectional infinite scrolling
+// Portfolio ⟵ AI Interface ⟵ Mobile App ⟵ ... ⟵ Portfolio ⟶ About ⟶ ... ⟶ AI Interface ⟶ Portfolio ⟶ ...
+const SET_COUNT = 5;
+const MIDDLE_SET_INDEX = 2; // Start in middle set so user can scroll backward immediately
 const TOTAL_PANELS_COUNT = BASE_SECTIONS.length * SET_COUNT;
 
 export default function HorizontalTrack() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentVW, setCurrentVW] = useState(0);
+  const [currentVW, setCurrentVW] = useState(MIDDLE_SET_INDEX * BASE_SECTIONS.length * 100);
+  const [isReady, setIsReady] = useState(false);
   const lenis = useLenis();
 
   const sectionCount = BASE_SECTIONS.length; // 7
 
   useEffect(() => {
+    // Disable native scroll restoration so we start at the middle set
+    if (typeof window !== "undefined") {
+      window.history.scrollRestoration = "manual";
+      const vh = window.innerHeight || 1080;
+      const initialScroll = MIDDLE_SET_INDEX * sectionCount * vh;
+      window.scrollTo(0, initialScroll);
+      setIsReady(true);
+    }
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const vh = window.innerHeight || 1080;
@@ -33,11 +44,16 @@ export default function HorizontalTrack() {
       const rawVW = (scrollY / vh) * 100;
       setCurrentVW(rawVW);
 
-      // 2. Seamless Infinite Loop Reset
-      // 1 full cycle of 7 sections is (7 * vh)
+      // 2. Seamless Bidirectional Loop Thresholds
       const oneSetHeight = sectionCount * vh;
-      if (scrollY >= oneSetHeight * 2) {
+
+      // Forward wrap threshold: when scrolling past set 3, shift back to set 2
+      if (scrollY >= oneSetHeight * (MIDDLE_SET_INDEX + 1)) {
         window.scrollTo(0, scrollY - oneSetHeight);
+      }
+      // Backward wrap threshold: when scrolling above set 1, shift forward to set 2
+      else if (scrollY <= oneSetHeight * (MIDDLE_SET_INDEX - 1)) {
+        window.scrollTo(0, scrollY + oneSetHeight);
       }
     };
 
@@ -57,7 +73,7 @@ export default function HorizontalTrack() {
     const targetScroll = currentSet * oneSetHeight + index * vh;
 
     if (lenis) {
-      lenis.scrollTo(targetScroll, { duration: 1.0 });
+      lenis.scrollTo(targetScroll, { duration: 0.9 });
     } else {
       window.scrollTo({
         top: targetScroll,
@@ -96,6 +112,8 @@ export default function HorizontalTrack() {
           className="flex flex-row flex-nowrap w-fit h-screen will-change-transform"
           style={{
             transform: `translate3d(-${currentVW}vw, 0, 0)`,
+            opacity: isReady ? 1 : 0,
+            transition: "opacity 0.2s ease",
           }}
         >
           {Array.from({ length: SET_COUNT }).map((_, setIdx) => (
